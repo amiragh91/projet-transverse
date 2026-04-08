@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.14.2 on win32)" generated="2026-02-05T22:57:34.516480" rpa="false" schemaversion="5">
+<suite id="s1" name="ROBOT API" source="C:\Users\ghab7\Desktop\ROBOT_API">
+<suite id="s1-s1" name="07 Requete GET Single Resource" source="C:\Users\ghab7\Desktop\ROBOT_API\07_Requete_GET_Single_Resource.robot">
+<test id="s1-s1-t1" name="Test Requete GET Single Resource" line="12">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-02-05T22:57:34.954463" level="INFO">&amp;{headers} = { Authorization=Bearer Cle-API-ReqRes-test-academy }</msg>
+<var>&amp;{headers}</var>
+<arg>Authorization=Bearer ${API_KEY}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-02-05T22:57:34.952010" elapsed="0.005312"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2026-02-05T22:57:36.736943" level="INFO">GET Request : url=https://mock-api-h0g7.onrender.com/api/unknown/2 
+ path_url=/api/unknown/2 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer Cle-API-ReqRes-test-academy'} 
+ body=None 
+ </msg>
+<msg time="2026-02-05T22:57:36.738301" level="INFO">GET Response : url=https://mock-api-h0g7.onrender.com/api/unknown/2 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 05 Feb 2026 21:57:35 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Content-Encoding': 'gzip', 'rndr-id': '3b67b3ab-aedf-42a9', 'vary': 'Accept-Encoding', 'x-render-origin-server': 'uvicorn', 'cf-cache-status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': '9c95aa0f3afdb598-CDG', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={"data":{"id":2,"name":"fuchsia rose","year":2001,"color":"#C74375","pantone_value":"17-2031"},"support":{"url":"https://api.testacademy.fr/#support-heading","text":"To keep TestAcademy free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg time="2026-02-05T22:57:36.739588" level="INFO">${Reponse} = &lt;Response [200]&gt;</msg>
+<var>${Reponse}</var>
+<arg>${Base_URL}api/unknown/${Resource_Id}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2026-02-05T22:57:34.959151" elapsed="1.781807"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-02-05T22:57:36.747822" level="INFO">{'data': {'id': 2, 'name': 'fuchsia rose', 'year': 2001, 'color': '#C74375', 'pantone_value': '17-2031'}, 'support': {'url': 'https://api.testacademy.fr/#support-heading', 'text': 'To keep TestAcademy free, contributions towards server costs are appreciated!'}}</msg>
+<arg>${Reponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.743375" elapsed="0.006128"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2026-02-05T22:57:36.754271" level="INFO">${data} = {'id': 2, 'name': 'fuchsia rose', 'year': 2001, 'color': '#C74375', 'pantone_value': '17-2031'}</msg>
+<var>${data}</var>
+<arg>${Reponse.json()}</arg>
+<arg>data</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.750808" elapsed="0.004078"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2026-02-05T22:57:36.758569" level="INFO">${id} = 2</msg>
+<var>${id}</var>
+<arg>${data}</arg>
+<arg>id</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.756587" elapsed="0.002664"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-02-05T22:57:36.763273" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${id}</arg>
+<arg>${Resource_Id}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.761021" elapsed="0.003236"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2026-02-05T22:57:36.767894" level="INFO">${name} = fuchsia rose</msg>
+<var>${name}</var>
+<arg>${data}</arg>
+<arg>name</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.765840" elapsed="0.003714"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${name}</arg>
+<arg>${Name_Attendu}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.771194" elapsed="0.004978"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${data}</arg>
+<arg>year</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.777838" elapsed="0.001701"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${data}</arg>
+<arg>color</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.781346" elapsed="0.001488"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${data}</arg>
+<arg>pantone_value</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2026-02-05T22:57:36.784004" elapsed="0.001472"/>
+</kw>
+<status status="PASS" start="2026-02-05T22:57:34.937795" elapsed="1.849052"/>
+</test>
+<status status="PASS" start="2026-02-05T22:57:34.657822" elapsed="2.151701"/>
+</suite>
+<status status="PASS" start="2026-02-05T22:57:34.548546" elapsed="2.274618"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="ROBOT API" id="s1" pass="1" fail="0" skip="0">ROBOT API</stat>
+<stat name="07 Requete GET Single Resource" id="s1-s1" pass="1" fail="0" skip="0">ROBOT API.07 Requete GET Single Resource</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
