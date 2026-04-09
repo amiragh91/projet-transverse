@@ -7,11 +7,21 @@ echo =============================================
 echo        LANCEMENT DES TESTS IHM
 echo =============================================
 
+echo =============================
+echo CONTENU DU PROJET :
+dir
+echo =============================
+
 rem Vérifie que le dossier tests_ihm existe
 if not exist "tests_ihm" (
     echo ERREUR : le dossier tests_ihm est introuvable !
     exit /b 1
 )
+
+echo =============================
+echo CONTENU tests_ihm :
+dir tests_ihm
+echo =============================
 
 rem Crée un dossier reports si nécessaire
 if not exist "reports" (
@@ -20,7 +30,7 @@ if not exist "reports" (
 
 echo Execution des tests Robot Framework...
 
-rem Lancement des tests
+rem Lancement des tests (UNE SEULE FOIS)
 robot -d reports tests_ihm
 
 rem Sauvegarde du code retour
