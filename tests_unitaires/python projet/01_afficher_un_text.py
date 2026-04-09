@@ -7,6 +7,8 @@ print("Je m'appelle " + nom + ".")
 print("Mon nom est " + nom + ".")
 
 
+
+
 nom = "Selma"
 
 print("Je m'appelle " + nom + ".")
